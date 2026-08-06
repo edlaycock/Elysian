@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Elysian Collection — Curating Exceptional Hotel Partnerships</title>
+<meta name="description" content="Elysian Collection is a bespoke hotel representation consultancy delivering tailored sales and marketing solutions for a carefully curated collection of luxury hotels and resorts across the UK and Ireland." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #FBF9F5; color: #201E1B; font-family: Manrope, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, p, ul, ol, figure, blockquote, fieldset { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  fieldset { border: 0; padding: 0; }
+  img { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; }
+  a { color: #201E1B; text-decoration: none; }
+  a:hover { color: #6E675D; }
+  :focus-visible { outline: 2px solid #201E1B; outline-offset: 3px; }
+  input, textarea, select { font: inherit; color: inherit; }
+  @keyframes ecFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes ecWave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes ecDrift { from { transform: scale(1.02) translate3d(0,0,0); } to { transform: scale(1.12) translate3d(-1.5%,-1%,0); } }
+  @keyframes ecRise { from { opacity: 0; transform: translateY(26px); filter: blur(4px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  #ec-founder-portrait { animation: ecRise 1200ms cubic-bezier(0.22, 0.9, 0.24, 1) both; animation-timeline: view(); animation-range: entry 4% cover 30%; }
+  @supports not (animation-timeline: view()) { #ec-founder-portrait { animation: ecRise 1200ms cubic-bezier(0.22, 0.9, 0.24, 1) both; } }
+  #ec-home-cta { animation: ecRise 1100ms cubic-bezier(0.22, 0.9, 0.24, 1) both; animation-timeline: view(); animation-range: entry 5% cover 34%; }
+  @supports not (animation-timeline: view()) { #ec-home-cta { animation: ecRise 1100ms cubic-bezier(0.22, 0.9, 0.24, 1) both; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#201E1B"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="52" letter-spacing="4" fill="#DCD6CC">EC</text></svg></template>
+
+<a href="#main" style="position:absolute;left:-9999px;top:0;z-index:400;background:#201E1B;color:#FBF9F5;padding:14px 22px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase" style-focus="left:16px;top:14px">Skip to content</a>
+
+<header role="banner" ref="{{ headerRef }}" style="position:fixed;top:0;left:0;right:0;z-index:120;background:{{ headerBg }};backdrop-filter:{{ headerBlur }};border-bottom:1px solid {{ headerBorder }};transition:background 500ms ease,border-color 500ms ease">
+  <sc-if value="{{ atTop }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;max-width:1440px;margin:0 auto;padding:clamp(22px,3.4vw,38px) clamp(20px,5vw,64px) clamp(18px,2.4vw,28px);display:flex;flex-direction:column;align-items:center;gap:clamp(14px,1.8vw,22px)">
+      <a href="#home" onClick="{{ goHome }}" aria-label="Elysian Collection — home" style="display:block">
+        <img src="./assets/logo-white-stack.png" alt="Elysian Collection" width="1012" height="712" style="width:clamp(120px,13vw,178px);height:auto;filter:drop-shadow(0 2px 14px rgba(18,16,12,0.35))" />
+      </a>
+
+      <nav role="navigation" aria-label="Primary" style="display:{{ navDisplay }};justify-content:center">
+        <ul style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px clamp(22px,2.6vw,38px)">
+          <li><a href="#home" onClick="{{ goHome }}" aria-current="{{ curHome }}" style="display:block;color:#FFFDF9;font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid {{ ulHome }};text-shadow:0 1px 10px rgba(18,16,12,0.4)" style-hover="color:#FFFDF9;border-bottom-color:#FFFDF9">Home</a></li>
+          <li><a href="#services" onClick="{{ goServices }}" aria-current="{{ curServices }}" style="display:block;color:#FFFDF9;font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid {{ ulServices }};text-shadow:0 1px 10px rgba(18,16,12,0.4)" style-hover="color:#FFFDF9;border-bottom-color:#FFFDF9">Services</a></li>
+          <li><a href="#contact" onClick="{{ goContact }}" aria-current="{{ curContact }}" style="display:block;color:#FFFDF9;font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid {{ ulContact }};text-shadow:0 1px 10px rgba(18,16,12,0.4)" style-hover="color:#FFFDF9;border-bottom-color:#FFFDF9">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ec-mobile-menu" style="display:{{ burgerDisplay }};position:absolute;right:clamp(16px,4vw,40px);top:clamp(18px,3vw,32px);align-items:center;gap:11px;background:none;border:0;padding:12px 2px;min-height:48px;cursor:pointer;color:#FFFDF9">
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-shadow:0 1px 10px rgba(18,16,12,0.5)">Menu</span>
+        <span aria-hidden="true" style="display:flex;flex-direction:column;gap:5px;width:22px">
+          <span style="height:1px;background:currentColor;display:block"></span>
+          <span style="height:1px;background:currentColor;display:block"></span>
+        </span>
+      </button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ compact }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,64px);height:clamp(64px,7vw,78px);display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#home" onClick="{{ goHome }}" aria-label="Elysian Collection — home" style="display:flex;align-items:center;flex:0 0 auto">
+        <img src="./assets/logo-horizontal.png" alt="Elysian Collection" width="731" height="160" style="height:clamp(30px,3.8vw,40px);width:auto" />
+      </a>
+
+      <nav role="navigation" aria-label="Primary" style="display:{{ navDisplay }};align-items:center;gap:clamp(24px,3vw,42px)">
+        <ul style="display:flex;align-items:center;gap:clamp(22px,2.4vw,36px)">
+          <li><a href="#home" onClick="{{ goHome }}" aria-current="{{ curHome }}" style="display:block;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid {{ dkHome }}" style-hover="border-bottom-color:#201E1B;color:#201E1B">Home</a></li>
+          <li><a href="#services" onClick="{{ goServices }}" aria-current="{{ curServices }}" style="display:block;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid {{ dkServices }}" style-hover="border-bottom-color:#201E1B;color:#201E1B">Services</a></li>
+          <li><a href="#contact" onClick="{{ goContact }}" aria-current="{{ curContact }}" style="display:block;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid {{ dkContact }}" style-hover="border-bottom-color:#201E1B;color:#201E1B">Contact</a></li>
+        </ul>
+        <a href="#contact" onClick="{{ goContact }}" style="border:1px solid #201E1B;padding:12px 20px;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;transition:background 300ms ease,color 300ms ease" style-hover="background:#201E1B;color:#FBF9F5">Discuss Your Hotel</a>
+      </nav>
+
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ec-mobile-menu" style="display:{{ burgerDisplay }};align-items:center;gap:11px;background:none;border:0;padding:12px 2px;min-height:48px;cursor:pointer">
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase">Menu</span>
+        <span aria-hidden="true" style="display:flex;flex-direction:column;gap:5px;width:22px">
+          <span style="height:1px;background:#201E1B;display:block"></span>
+          <span style="height:1px;background:#201E1B;display:block"></span>
+        </span>
+      </button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div id="ec-mobile-menu" style="background:#FBF9F5;border-top:1px solid #EAE4DA;padding:6px clamp(20px,5vw,64px) 30px;animation:ecFade 280ms ease both">
+      <ul>
+        <li><a href="#home" onClick="{{ goHome }}" style="display:block;padding:19px 0;border-bottom:1px solid #EAE4DA;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px">Home</a></li>
+        <li><a href="#services" onClick="{{ goServices }}" style="display:block;padding:19px 0;border-bottom:1px solid #EAE4DA;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px">Services</a></li>
+        <li><a href="#contact" onClick="{{ goContact }}" style="display:block;padding:19px 0;border-bottom:1px solid #EAE4DA;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px">Contact</a></li>
+      </ul>
+      <a href="#contact" onClick="{{ goContact }}" style="display:block;margin-top:24px;text-align:center;background:#201E1B;color:#FBF9F5;padding:19px 24px;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase" style-hover="color:#FBF9F5;background:#38342D">Discuss Your Hotel</a>
+    </div>
+  </sc-if>
+</header>
+
+<main id="main" role="main" style="display:block">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+  <section aria-label="Elysian Collection" style="position:relative;min-height:min(90vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:#DFE7E9">
+    <img src="./assets/palm-tree-court.jpg" alt="Palm-lined pool terrace looking out to the beach at JA Palm Tree Court, Dubai" width="4724" height="3147" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide0 }};transition:opacity 1800ms ease" />
+    <img src="./assets/manafaru-water-villas.jpg" alt="" aria-hidden="true" width="766" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide1 }};transition:opacity 1800ms ease" />
+    <img src="./assets/mar-hall.jpg" alt="" aria-hidden="true" width="1400" height="928" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide2 }};transition:opacity 1800ms ease" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.82) 0%,rgba(20,18,14,0.7) 38%,rgba(20,18,14,0.34) 68%,rgba(20,18,14,0.08) 100%)"></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(56px,9vh,104px)">
+      <div style="max-width:min(720px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
+        <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.88);margin-bottom:clamp(22px,3vw,32px)">Luxury hotel representation across the UK &amp; Ireland</p>
+        <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(38px,6.8vw,84px);line-height:1.04;letter-spacing:-0.015em;text-wrap:balance">Curating Exceptional Hotel Partnerships</h1>
+        <p style="margin-top:clamp(20px,2.6vw,28px);max-width:50ch;font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.75;color:rgba(255,253,249,0.94);text-wrap:pretty">Bespoke sales and marketing representation for a carefully curated collection of luxury hotels and resorts.</p>
+        <div style="margin-top:clamp(32px,4.4vw,46px);display:flex;flex-wrap:wrap;align-items:center;gap:clamp(20px,3vw,34px)">
+          <a href="#contact" onClick="{{ goContact }}" style="background:#FFFDF9;color:#201E1B;padding:19px 34px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;transition:background 300ms ease" style-hover="background:#E4DCCF;color:#201E1B">Discuss Your Hotel</a>
+          <a href="#services" onClick="{{ goServices }}" style="color:#FFFDF9;font-size:12px;font-weight:500;letter-spacing:0.12em;padding-bottom:6px;border-bottom:1px solid rgba(255,253,249,0.5);transition:border-color 300ms ease" style-hover="color:#FFFDF9;border-bottom-color:#FFFDF9">Explore Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-welcome" style="background:#FBF9F5;padding:clamp(44px,6vh,80px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(34px,6vw,88px);align-items:start">
+      <div>
+        <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#8B857C">Your journey starts here</p>
+        <h2 id="ec-welcome" style="margin-top:18px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(31px,4.2vw,54px);line-height:1.1;letter-spacing:-0.01em">Welcome to Elysian Collection</h2>
+        <div style="width:clamp(240px,25vw,340px);aspect-ratio:16/10;margin:clamp(14px,2vw,24px) auto 0;overflow:hidden;line-height:0">
+          <video src="./assets/logo-reveal.mp4" autoPlay="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" aria-label="Elysian Collection — curating exceptional hotel partnerships" style="display:block;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply"></video>
+        </div>
+      </div>
+      <div style="max-width:60ch">
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(21px,2.2vw,29px);font-weight:300;line-height:1.5;color:#2B2823;text-wrap:pretty">A bespoke representation consultancy delivering tailored sales and marketing solutions for a carefully curated collection of luxury hotels and resorts.</p>
+        <p style="margin-top:24px;font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">With over 35 years of luxury travel expertise, Elysian Collection delivers bespoke sales representation that builds meaningful relationships, increases brand visibility and drives measurable results.</p>
+        <p style="margin-top:34px;border-top:1px solid #E4DED4;padding-top:20px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+          <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:400;line-height:1">35+</span>
+          <span style="font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Years of luxury travel experience</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-founder" style="background:#F3EFE8;padding:clamp(68px,11vh,140px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,6vw,86px);align-items:center">
+      <figure>
+        <div style="width:81%;aspect-ratio:4/5;background:#E6E0D6;overflow:hidden">
+          <img id="ec-founder-portrait" src="./assets/gill-shannon.jpg" alt="Gill Shannon, founder of Elysian Collection" style="width:100%;height:100%;object-fit:cover" />
+        </div>
+      </figure>
+      <div>
+        <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#8B857C">Founder-led representation</p>
+        <h2 id="ec-founder" style="margin-top:18px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(31px,4.2vw,54px);line-height:1.08">Meet Gill Shannon</h2>
+        <p style="margin-top:14px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(19px,2vw,25px);font-weight:300;color:#55514B">Experience built on both sides of the partnership</p>
+        <div style="margin-top:28px;display:flex;flex-direction:column;gap:18px;max-width:58ch">
+          <p style="font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">Gill Shannon has spent more than 35 years in luxury travel, with senior experience across leisure sales, product, marketing and business development. She understands how hotels and tour operators each define commercial success, and how to make the two work together.</p>
+          <p style="font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">Her career spans JA Resorts &amp; Hotels, Travelbeam Luxury Hotels, InterContinental Hotels Group, Jumeirah Hotels &amp; Resorts, Address Hotels + Resorts, ITC Travel Group and Elegant Resorts — hotel-side commercial roles alongside tour-operator product experience.</p>
+          <p style="font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">That combination underpins a deep familiarity with the UK and Ireland travel market and long-standing relationships across the trade.</p>
+        </div>
+        <blockquote style="margin-top:34px;border-left:1px solid #C4BDB0;padding-left:clamp(20px,2.4vw,30px);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,2.4vw,30px);font-weight:300;line-height:1.42;max-width:42ch">We believe representation should be personal, strategic and deliver results.</blockquote>
+        <a href="#contact" onClick="{{ goContact }}" style="display:inline-block;margin-top:34px;background:#201E1B;color:#FBF9F5;padding:18px 32px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;transition:background 300ms ease" style-hover="background:#38342D;color:#FBF9F5">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-philosophy" style="position:relative;background:#201E1B;color:#F3EFE8;padding:clamp(72px,12vh,152px) clamp(20px,5vw,64px);overflow:hidden">
+    <img src="./assets/beach-hotel.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.11" />
+    <div style="position:relative;max-width:1440px;margin:0 auto">
+      <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#A8A29B">Representation philosophy</p>
+      <h2 id="ec-philosophy" style="margin-top:24px;max-width:28ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(27px,3.7vw,48px);line-height:1.22;letter-spacing:-0.01em;text-wrap:pretty">Every hotel has its own story. Our role is to ensure it reaches the right audience through trusted relationships, targeted sales activity and a tailored market strategy.</h2>
+      <ul style="margin-top:clamp(46px,7vw,86px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(28px,4vw,56px)">
+        <sc-for list="{{ principles }}" as="item" hint-placeholder-count="3">
+          <li style="border-top:1px solid #454039;padding-top:22px">
+            <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;letter-spacing:0.1em;color:#A8A29B">{{ item.num }}</span>
+            <h3 style="margin-top:12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(22px,2.3vw,28px);line-height:1.25">{{ item.title }}</h3>
+            <p style="margin-top:12px;font-size:15px;font-weight:300;line-height:1.8;color:#C2BCB2;text-wrap:pretty">{{ item.body }}</p>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-preview" style="background:#FBF9F5;padding:clamp(44px,6vh,80px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px">
+        <h2 id="ec-preview" style="max-width:22ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(29px,4vw,52px);line-height:1.1">Representation shaped around your hotel</h2>
+        <a href="#services" onClick="{{ goServices }}" style="font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid #C4BDB0">All services</a>
+      </div>
+      <ul style="margin-top:clamp(36px,5.5vw,68px)">
+        <sc-for list="{{ servicePreview }}" as="item" hint-placeholder-count="4">
+          <li style="border-top:1px solid #E4DED4">
+            <a href="#services" onClick="{{ goServices }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px clamp(24px,4vw,64px);align-items:baseline;padding:clamp(22px,3.2vw,36px) 0;transition:opacity 300ms ease" style-hover="opacity:0.62;color:#201E1B">
+              <span style="display:flex;align-items:baseline;gap:18px">
+                <span style="font-size:11px;letter-spacing:0.16em;color:#8B857C">{{ item.num }}</span>
+                <span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(23px,2.7vw,34px);line-height:1.2">{{ item.title }}</span>
+              </span>
+              <span style="font-size:15px;font-weight:300;line-height:1.8;color:#55514B;max-width:46ch;text-wrap:pretty">{{ item.body }}</span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-featured" style="background:#F3EFE8;padding:clamp(68px,11vh,140px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#8B857C">Featured collection</p>
+      <h2 id="ec-featured" style="margin-top:18px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(31px,4.2vw,54px);line-height:1.1">A collection with character</h2>
+      <div style="margin-top:clamp(38px,5.5vw,70px);display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:clamp(22px,3.4vw,46px);align-items:end">
+        <sc-for list="{{ featured }}" as="item" hint-placeholder-count="3">
+          <figure>
+            <div style="overflow:hidden;background:#E6E0D6">
+              <div role="img" aria-label="{{ item.alt }}" style="{{ item.bg }}" style-hover="transform:scale(1.04)"></div>
+            </div>
+            <figcaption style="margin-top:18px">
+              <p style="font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#8B857C">{{ item.location }}</p>
+              <p style="margin-top:8px;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,2vw,24px);font-weight:400;line-height:1.35">{{ item.hotels }}</p>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+      <a href="#services" onClick="{{ goCollection }}" style="display:inline-block;margin-top:clamp(34px,5vw,58px);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid #C4BDB0">Explore the Collection</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-home-cta" style="background:#FBF9F5;border-top:1px solid #E4DED4;padding:clamp(44px,6vh,76px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:clamp(28px,5vw,60px)">
+      <h2 id="ec-home-cta" style="max-width:26ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(29px,4.2vw,54px);line-height:1.14;text-wrap:pretty">Your hotel has a story. Let's take it to the right audience.</h2>
+      <a href="#contact" onClick="{{ goContact }}" style="background:#201E1B;color:#FBF9F5;padding:20px 36px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;transition:background 300ms ease" style-hover="background:#38342D;color:#FBF9F5">Discuss Your Hotel</a>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section aria-labelledby="ec-svc-hero" style="position:relative;min-height:min(74vh,700px);display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
+    <img src="./assets/mar-hall.jpg" alt="JA Mar Hall seen from above, with its golf course and the River Clyde beyond" width="1400" height="928" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.8) 0%,rgba(20,18,14,0.66) 40%,rgba(20,18,14,0.3) 72%,rgba(20,18,14,0.06) 100%)"></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(52px,8vh,96px)">
+      <div style="max-width:min(680px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
+        <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.88)">UK &amp; Ireland representation</p>
+        <h1 id="ec-svc-hero" style="margin-top:20px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(36px,5.4vw,70px);line-height:1.06;letter-spacing:-0.015em">Strategic representation. Personal delivery.</h1>
+        <p style="margin-top:24px;max-width:52ch;font-size:clamp(15px,1.25vw,17px);font-weight:300;line-height:1.85;color:rgba(255,253,249,0.94);text-wrap:pretty">We provide bespoke sales representation across the UK and Ireland, helping luxury hotels grow their presence through strategic business development, strong trade relationships and targeted marketing support.</p>
+        <a href="#contact" onClick="{{ goContact }}" style="display:inline-block;margin-top:34px;background:#FFFDF9;color:#201E1B;padding:18px 32px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;transition:background 300ms ease" style-hover="background:#E4DCCF;color:#201E1B">Discuss Your Hotel</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-cap" style="background:#F3EFE8;padding:clamp(44px,6vh,80px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <h2 id="ec-cap" style="max-width:20ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(29px,4vw,52px);line-height:1.1">What representation covers</h2>
+      <ul style="margin-top:clamp(36px,5.5vw,68px);display:grid;grid-template-columns:{{ cols3 }};gap:0 clamp(28px,4vw,60px)">
+        <sc-for list="{{ capabilities }}" as="item" hint-placeholder-count="6">
+          <li style="border-top:1px solid #DBD4C8;padding:clamp(24px,3vw,34px) 0">
+            <span style="font-size:11px;letter-spacing:0.16em;color:#8B857C">{{ item.num }}</span>
+            <h3 style="margin-top:12px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(22px,2.5vw,30px);line-height:1.22">{{ item.title }}</h3>
+            <p style="margin-top:12px;max-width:44ch;font-size:15px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">{{ item.body }}</p>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-process" style="background:#201E1B;color:#F3EFE8;padding:clamp(68px,11vh,140px) clamp(20px,5vw,64px)">
+    <div style="max-width:1440px;margin:0 auto">
+      <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#A8A29B">The approach</p>
+      <h2 id="ec-process" style="margin-top:20px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(29px,4vw,52px);line-height:1.1">How Elysian works</h2>
+      <ol style="margin-top:clamp(42px,6vw,78px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(26px,4vw,46px)">
+        <sc-for list="{{ process }}" as="item" hint-placeholder-count="4">
+          <li style="border-top:1px solid #454039;padding-top:20px">
+            <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,3.2vw,42px);font-weight:300;line-height:1;color:#8D877E">{{ item.num }}</span>
+            <p style="margin-top:14px;font-size:clamp(15px,1.35vw,17px);font-weight:300;line-height:1.75;color:#ECE7DF;text-wrap:pretty">{{ item.body }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <section id="collection" aria-labelledby="ec-collection" style="background:#FBF9F5;padding:clamp(68px,11vh,140px) clamp(20px,5vw,64px);scroll-margin-top:96px">
+    <div style="max-width:1440px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,5vw,76px);align-items:end">
+        <div>
+          <p style="font-size:11px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:#8B857C">Current collection</p>
+          <h2 id="ec-collection" style="margin-top:18px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(31px,4.2vw,54px);line-height:1.1">Our Collection</h2>
+        </div>
+        <p style="max-width:56ch;font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">JA Resorts &amp; Hotels is a curated collection of distinctive destinations across Dubai, the Maldives and Scotland, united by a shared commitment to genuine hospitality, authentic experiences and thoughtful service.</p>
+      </div>
+
+      <div style="margin-top:clamp(40px,6vw,80px);display:flex;flex-direction:column;gap:clamp(44px,6vw,88px)">
+        <sc-for list="{{ collection }}" as="group" hint-placeholder-count="3">
+          <section aria-label="{{ group.label }}">
+            <h3 style="font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#201E1B;border-bottom:1px solid #E4DED4;padding-bottom:14px">{{ group.label }}</h3>
+            <ul style="margin-top:clamp(24px,3.4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3.4vw,44px)">
+              <sc-for list="{{ group.hotels }}" as="hotel" hint-placeholder-count="2">
+                <li>
+                  <figure>
+                    <div style="position:relative;overflow:hidden;background:#E6E0D6;aspect-ratio:3/2">
+                      <sc-if value="{{ hotel.hasImage }}" hint-placeholder-val="{{ false }}">
+                        <div role="img" aria-label="{{ hotel.alt }}" style="{{ hotel.bg }}" style-hover="transform:scale(1.04)"></div>
+                      </sc-if>
+                      <sc-if value="{{ hotel.needsImage }}" hint-placeholder-val="{{ false }}">
+                        <image-slot id="{{ hotel.slotId }}" shape="rect" fit="cover" placeholder="{{ hotel.slotLabel }}"></image-slot>
+                      </sc-if>
+                    </div>
+                    <figcaption style="margin-top:16px">
+                      <h4 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(21px,2.1vw,26px);line-height:1.25">{{ hotel.name }}</h4>
+                      <p style="margin-top:6px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">{{ hotel.location }}</p>
+
+                      <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+                        <sc-for list="{{ hotel.desc }}" as="para" hint-placeholder-count="1">
+                          <p style="font-size:14px;font-weight:300;line-height:1.8;color:#55514B;text-wrap:pretty">{{ para }}</p>
+                        </sc-for>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li>
+              </sc-for>
+            </ul>
+          </section>
+        </sc-for>
+      </div>
+
+      <section aria-labelledby="ec-previous" style="margin-top:clamp(52px,8vw,104px);border-top:1px solid #E4DED4;padding-top:clamp(26px,3.5vw,40px)">
+        <h3 id="ec-previous" style="font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#8B857C">Previous Representation</h3>
+        <p style="margin-top:14px;max-width:56ch;font-size:14px;font-weight:300;line-height:1.8;color:#8B857C">Former clients. These properties are not part of the current collection.</p>
+        <ul style="margin-top:22px;display:flex;flex-wrap:wrap;gap:12px 40px">
+          <li style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(18px,1.8vw,22px);font-weight:400;color:#55514B">Oasis Beach Tower, Dubai</li>
+          <li style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(18px,1.8vw,22px);font-weight:400;color:#55514B">Enchanted Island Resort, Seychelles</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-svc-cta" style="position:relative;background:#F3EFE8;padding:clamp(72px,12vh,152px) clamp(20px,5vw,64px);overflow:hidden">
+    <img src="./assets/hatta-fort.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.16;animation:ecDrift 34s ease-in-out infinite alternate both" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(243,239,232,0.55) 0%,rgba(243,239,232,0.72) 100%)"></div>
+    <div style="position:relative;max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:clamp(28px,5vw,60px)">
+      <h2 id="ec-svc-cta" style="max-width:28ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(28px,4vw,50px);line-height:1.14;text-wrap:pretty">Looking for thoughtful representation in the UK and Ireland?</h2>
+      <a href="#contact" onClick="{{ goContact }}" style="background:#201E1B;color:#FBF9F5;padding:20px 36px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;transition:background 300ms ease" style-hover="background:#38342D;color:#FBF9F5">Start a Conversation</a>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section aria-labelledby="ec-contact-hero" style="position:relative;min-height:min(68vh,640px);display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
+    <img src="./assets/ocean-view-hotel.jpg" alt="Infinity pool with cabanas looking towards Ain Dubai at JA Ocean View Hotel" width="8256" height="5504" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.8) 0%,rgba(20,18,14,0.64) 42%,rgba(20,18,14,0.28) 74%,rgba(20,18,14,0.06) 100%)"></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(52px,8vh,96px)">
+      <div style="max-width:min(700px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
+        <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.88)">Contact Elysian Collection</p>
+        <h1 id="ec-contact-hero" style="margin-top:20px;max-width:24ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(36px,5.4vw,70px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance">Let's discuss where your hotel could go next</h1>
+        <p style="margin-top:24px;max-width:56ch;font-size:clamp(15px,1.25vw,17px);font-weight:300;line-height:1.85;color:rgba(255,253,249,0.94);text-wrap:pretty">Tell us about your property, your commercial priorities and your ambitions for the UK and Ireland market. Gill will come back to you personally.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ec-enquiry" style="background:#FBF9F5;padding:clamp(48px,7vh,88px) clamp(20px,5vw,64px) clamp(68px,11vh,140px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(40px,6vw,88px);align-items:start">
+      <div>
+        <h2 id="ec-details" style="font-size:15px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;border-bottom:1px solid #E4DED4;padding-bottom:16px">Direct contact</h2>
+        <dl style="margin:26px 0 0;display:flex;flex-direction:column;gap:22px">
+          <div>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Contact</dt>
+            <dd style="margin:8px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(23px,2.4vw,30px);font-weight:400">Gill Shannon</dd>
+          </div>
+          <div>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Email</dt>
+            <dd style="margin:8px 0 0"><a href="mailto:gill@elysiancollection.co.uk" style="font-size:16px;font-weight:300;border-bottom:1px solid #C4BDB0;padding-bottom:2px">gill@elysiancollection.co.uk</a></dd>
+          </div>
+          <div>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Telephone</dt>
+            <dd style="margin:8px 0 0"><a href="tel:+447920017175" style="font-size:16px;font-weight:300;border-bottom:1px solid #C4BDB0;padding-bottom:2px">07920 017175</a></dd>
+          </div>
+          <div>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Address</dt>
+            <dd style="margin:8px 0 0;font-size:16px;font-weight:300;line-height:1.75;color:#55514B;display:flex;flex-direction:column">
+              <span>Enterprise House</span>
+              <span>The Courtyard</span>
+              <span>Old Court House Road</span>
+              <span>Bromborough</span>
+              <span>Wirral</span>
+              <span>CH62 4AB</span>
+            </dd>
+          </div>
+          <div>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Website</dt>
+            <dd style="margin:8px 0 0"><a href="https://elysiancollection.co.uk" style="font-size:16px;font-weight:300;border-bottom:1px solid #C4BDB0;padding-bottom:2px">elysiancollection.co.uk</a></dd>
+          </div>
+        </dl>
+        <p style="margin-top:36px;border-top:1px solid #E4DED4;padding-top:22px;max-width:46ch;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,1.9vw,23px);font-weight:300;line-height:1.55;color:#2B2823;text-wrap:pretty">Elysian Collection works with a carefully curated number of hotel partners, so that every property receives personal, focused attention.</p>
+      </div>
+
+      <div>
+        <h2 id="ec-enquiry" style="font-size:15px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;border-bottom:1px solid #E4DED4;padding-bottom:16px">Enquiry</h2>
+
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="margin-top:28px;border:1px solid #C4BDB0;background:#F3EFE8;padding:clamp(26px,4vw,40px);animation:ecFade 400ms ease both">
+            <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(23px,2.4vw,30px);font-weight:300;line-height:1.4;text-wrap:pretty">Thank you. Your enquiry has been received, and Gill will be in touch shortly.</p>
+            <p style="margin-top:16px;font-size:13px;font-weight:300;line-height:1.7;color:#8B857C">Prototype only — no data has been sent.</p>
+            <button type="button" onClick="{{ resetForm }}" style="margin-top:26px;background:none;border:1px solid #201E1B;padding:15px 26px;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;min-height:48px;transition:background 300ms ease,color 300ms ease" style-hover="background:#201E1B;color:#FBF9F5">Send another enquiry</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+          <form novalidate="true" onSubmit="{{ onSubmit }}" style="margin-top:28px;display:flex;flex-direction:column;gap:22px">
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <p role="alert" style="border:1px solid #8C4A3C;background:#F7EDEA;color:#7A3E31;padding:16px 18px;font-size:14px;font-weight:400;line-height:1.6">{{ formError }}</p>
+            </sc-if>
+
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="5">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <label for="{{ f.id }}" style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#55514B">{{ f.label }}</label>
+                <input id="{{ f.id }}" name="{{ f.id }}" type="{{ f.type }}" value="{{ f.value }}" onChange="{{ f.onChange }}" aria-invalid="{{ f.invalid }}" aria-describedby="{{ f.describedBy }}" autoComplete="{{ f.autoComplete }}" style="border:0;border-bottom:1px solid {{ f.border }};background:transparent;padding:13px 2px;font-size:16px;font-weight:300;min-height:48px;transition:border-color 250ms ease" style-focus="border-bottom-color:#201E1B" />
+                <sc-if value="{{ f.invalid }}" hint-placeholder-val="{{ false }}">
+                  <p id="{{ f.errorId }}" style="font-size:12px;font-weight:400;color:#7A3E31">{{ f.error }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label for="ec-interest" style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#55514B">Area of interest</label>
+              <select id="ec-interest" name="interest" value="{{ interest }}" onChange="{{ onInterest }}" style="border:0;border-bottom:1px solid #C4BDB0;background:transparent;padding:13px 2px;font-size:16px;font-weight:300;min-height:48px;border-radius:0" style-focus="border-bottom-color:#201E1B">
+                <option value="Sales Representation">Sales Representation</option>
+                <option value="Business Development">Business Development</option>
+                <option value="Trade Engagement">Trade Engagement</option>
+                <option value="Marketing Support">Marketing Support</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label for="ec-message" style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#55514B">Message</label>
+              <textarea id="ec-message" name="message" rows="5" value="{{ message }}" onChange="{{ onMessage }}" aria-invalid="{{ messageInvalid }}" aria-describedby="{{ messageDescribedBy }}" style="border:1px solid {{ messageBorder }};background:transparent;padding:14px;font-size:16px;font-weight:300;line-height:1.7;resize:vertical;transition:border-color 250ms ease" style-focus="border-color:#201E1B"></textarea>
+              <sc-if value="{{ messageInvalid }}" hint-placeholder-val="{{ false }}">
+                <p id="ec-message-error" style="font-size:12px;font-weight:400;color:#7A3E31">Please add a short message.</p>
+              </sc-if>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+              <label for="ec-consent" style="display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:6px 0;min-height:44px">
+                <input id="ec-consent" name="consent" type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" aria-invalid="{{ consentInvalid }}" aria-describedby="{{ consentDescribedBy }}" style="width:20px;height:20px;margin-top:2px;flex:0 0 auto;accent-color:#201E1B" />
+                <span style="font-size:14px;font-weight:300;line-height:1.7;color:#55514B">I agree that Elysian Collection may use these details to respond to my enquiry. [Placeholder privacy wording — link to Privacy Policy.]</span>
+              </label>
+              <sc-if value="{{ consentInvalid }}" hint-placeholder-val="{{ false }}">
+                <p id="ec-consent-error" style="font-size:12px;font-weight:400;color:#7A3E31">Please confirm your consent to continue.</p>
+              </sc-if>
+            </div>
+
+            <div style="margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+              <button type="submit" disabled="{{ sending }}" style="background:#201E1B;color:#FBF9F5;border:1px solid #201E1B;padding:19px 34px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;cursor:{{ submitCursor }};opacity:{{ submitOpacity }};min-height:52px;transition:background 300ms ease" style-hover="background:#38342D">{{ submitLabel }}</button>
+              <p style="font-size:12px;font-weight:300;line-height:1.6;color:#8B857C;max-width:34ch">Prototype form. Submissions are simulated and not delivered.</p>
+            </div>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+</main>
+
+<footer role="contentinfo" style="position:relative;background:#201E1B;color:#DCD6CC;padding:clamp(56px,8vh,96px) clamp(20px,5vw,64px) clamp(32px,4vh,48px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:min(58%,300px);pointer-events:none;opacity:0.5">
+    <svg viewBox="0 0 2880 220" preserveAspectRatio="none" style="position:absolute;left:0;bottom:0;width:200%;height:100%;animation:ecWave 44s linear infinite;fill:none;stroke:#6E675D;stroke-width:1.4"><path d="M0 130 C 90 80 270 80 360 130 S 630 180 720 130 S 990 80 1080 130 S 1350 180 1440 130 S 1710 80 1800 130 S 2070 180 2160 130 S 2430 80 2520 130 S 2790 180 2880 130"></path></svg>
+    <svg viewBox="0 0 2880 220" preserveAspectRatio="none" style="position:absolute;left:0;bottom:-26px;width:200%;height:100%;animation:ecWave 66s linear infinite reverse;fill:none;stroke:#4E4941;stroke-width:1.2"><path d="M0 150 C 120 100 300 200 480 150 S 840 100 1020 150 S 1380 200 1560 150 S 1920 100 2100 150 S 2460 200 2640 150 S 2880 120 2880 150"></path></svg>
+    <svg viewBox="0 0 2880 220" preserveAspectRatio="none" style="position:absolute;left:0;bottom:22px;width:200%;height:100%;animation:ecWave 88s linear infinite;fill:none;stroke:#8D877E;stroke-width:0.9;opacity:0.6"><path d="M0 110 C 150 160 330 60 510 110 S 870 160 1050 110 S 1410 60 1590 110 S 1950 160 2130 110 S 2490 60 2670 110 S 2880 140 2880 110"></path></svg>
+  </div>
+  <div style="position:relative;max-width:1440px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(32px,5vw,64px);align-items:start">
+      <div>
+        <img src="./assets/logo-white.png" alt="Elysian Collection" width="1066" height="832" style="width:clamp(180px,18vw,230px);height:auto;margin:-10px 0 0 -6px" />
+        <p style="margin-top:14px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:19px;font-weight:300;color:#C2BCB2">Curating Exceptional Hotel Partnerships</p>
+      </div>
+      <nav aria-label="Footer">
+        <h2 style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8D877E">Site</h2>
+        <ul style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
+          <li><a href="#home" onClick="{{ goHome }}" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Home</a></li>
+          <li><a href="#services" onClick="{{ goServices }}" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Services</a></li>
+          <li><a href="#contact" onClick="{{ goContact }}" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8D877E">Contact</h2>
+        <ul style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
+          <li><a href="mailto:gill@elysiancollection.co.uk" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">gill@elysiancollection.co.uk</a></li>
+          <li><a href="tel:+447920017175" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">07920 017175</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8D877E">Legal</h2>
+        <ul style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
+          <li><a href="#privacy" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Privacy Policy</a></li>
+          <li><a href="#cookies" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,6vw,72px);border-top:1px solid #3B3730;padding-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 32px">
+      <p style="font-size:11px;font-weight:300;letter-spacing:0.06em;color:#8D877E">© 2026 Elysian Collection. All rights reserved.</p>
+      <p style="display:flex;align-items:center;gap:7px;font-size:11px;font-weight:300;letter-spacing:0.06em;color:#8D877E">
+        <span>Designed with</span>
+        <svg viewBox="0 0 24 24" width="12" height="12" aria-label="love" role="img" style="display:block;fill:#A8A29B;flex:0 0 auto"><path d="M12 21s-7.5-4.7-9.4-9A5.3 5.3 0 0 1 12 6.2 5.3 5.3 0 0 1 21.4 12c-1.9 4.3-9.4 9-9.4 9z"></path></svg>
+        <span>by</span>
+        <a href="https://cumulusdigital.co.uk/" target="_blank" rel="noopener noreferrer" style="color:#DCD6CC;border-bottom:1px solid #56504700;transition:border-color 250ms ease" style-hover="color:#FBF9F5;border-bottom-color:#8D877E">Cumulus Digital</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const ROUTES = ['home', 'services', 'contact'];
+const META = {
+  home: ['Elysian Collection — Curating Exceptional Hotel Partnerships', 'Bespoke sales and marketing representation for a carefully curated collection of luxury hotels and resorts across the UK and Ireland.'],
+  services: ['Services — Elysian Collection', 'Bespoke sales representation across the UK and Ireland: business development, product training, FAM trips, trade events and marketing partnerships.'],
+  contact: ['Contact — Elysian Collection', 'Introduce your property and your UK and Ireland market ambitions to Gill Shannon at Elysian Collection.']
+};
+
+const bgFill = (src, extra) => Object.assign({ width: '100%', height: '100%', backgroundImage: 'url(' + src + ')', backgroundSize: 'cover', backgroundPosition: 'center', transition: 'transform 900ms ease' }, extra || {});
+const img = (name, location, file, alt, desc) => ({ name, location, alt, desc, src: './assets/' + file, bg: bgFill('./assets/' + file), hasImage: true, needsImage: false });
+const slot = (name, location, slotId, slotLabel, desc) => ({ name, location, slotId, slotLabel, desc, hasImage: false, needsImage: true });
+
+class Component extends DCLogic {
+  state = {
+    route: 'home', menuOpen: false, scrolled: false, wide: true, slide: 0, headerH: 190,
+    form: { name: '', company: '', email: '', phone: '', website: '', message: '', interest: 'Sales Representation', consent: false },
+    errors: {}, sending: false, submitted: false, formError: ''
+  };
+
+  headerRef = React.createRef();
+
+  measureHeader = () => {
+    const el = this.headerRef.current;
+    if (!el) return;
+    const h = Math.round(el.getBoundingClientRect().height);
+    if (h && h !== this.state.headerH) this.setState({ headerH: h });
+  };
+
+  componentDidUpdate() { this.measureHeader(); }
+
+  componentDidMount() {
+    this.syncRoute();
+    this.measureHeader();
+    if (window.ResizeObserver && this.headerRef.current) {
+      this.ro = new ResizeObserver(this.measureHeader);
+      this.ro.observe(this.headerRef.current);
+    }
+    this.onHash = () => this.syncRoute();
+    this.onScroll = () => {
+      const s = window.scrollY > 110;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    this.onResize = () => {
+      const w = window.innerWidth >= 900;
+      if (w !== this.state.wide) this.setState({ wide: w, menuOpen: false });
+    };
+    window.addEventListener('hashchange', this.onHash);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.slideTimer = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % 3 })), 6500);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.ro) this.ro.disconnect();
+    clearTimeout(this.timer);
+    clearInterval(this.slideTimer);
+  }
+
+  syncRoute() {
+    const raw = (window.location.hash || '').replace('#', '').split('?')[0];
+    const route = ROUTES.indexOf(raw) > -1 ? raw : 'home';
+    this.setRoute(route, false);
+  }
+
+  setRoute(route, scroll) {
+    const meta = META[route];
+    document.title = meta[0];
+    let tag = document.querySelector('meta[name="description"]');
+    if (!tag) { tag = document.createElement('meta'); tag.setAttribute('name', 'description'); document.head.appendChild(tag); }
+    tag.setAttribute('content', meta[1]);
+    this.setState({ route: route, menuOpen: false });
+    if (scroll) window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  nav(route, anchor) {
+    return (e) => {
+      e.preventDefault();
+      this.setRoute(route, true);
+      if (window.location.hash !== '#' + route) history.replaceState(null, '', '#' + route);
+      if (anchor) {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          const el = document.getElementById(anchor);
+          if (el) {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: reduce ? 'auto' : 'smooth' });
+          }
+        }, 90);
+      }
+    };
+  }
+
+  field(id, key, label, type, required, error, autoComplete) {
+    const invalid = !!this.state.errors[key];
+    return {
+      id: id, label: label, type: type, value: this.state.form[key], invalid: invalid,
+      error: error, errorId: id + '-error', describedBy: invalid ? id + '-error' : undefined,
+      border: invalid ? '#8C4A3C' : '#C4BDB0', autoComplete: autoComplete,
+      onChange: (e) => {
+        const v = e.target.value;
+        this.setState(s => {
+          const errors = Object.assign({}, s.errors); delete errors[key];
+          return { form: Object.assign({}, s.form, { [key]: v }), errors: errors };
+        });
+      }
+    };
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    const f = this.state.form;
+    const errors = {};
+    if (!f.name.trim()) errors.name = 1;
+    if (!f.company.trim()) errors.company = 1;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) errors.email = 1;
+    if (f.message.trim().length < 10) errors.message = 1;
+    if (!f.consent) errors.consent = 1;
+    const count = Object.keys(errors).length;
+    if (count) {
+      this.setState({ errors: errors, formError: 'Please check the highlighted ' + (count === 1 ? 'field' : 'fields') + ' and try again.' });
+      return;
+    }
+    this.setState({ sending: true, errors: {}, formError: '' });
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.setState({ sending: false, submitted: true }), 1200);
+  };
+
+  renderVals() {
+    const st = this.state;
+    const route = st.route;
+    const cur = (r) => route === r ? 'page' : undefined;
+    const fields = [
+      this.field('ec-name', 'name', 'Name', 'text', true, 'Please tell us your name.', 'name'),
+      this.field('ec-company', 'company', 'Hotel or company', 'text', true, 'Please add your hotel or company.', 'organization'),
+      this.field('ec-email', 'email', 'Work email', 'email', true, 'Please enter a valid email address.', 'email'),
+      this.field('ec-phone', 'phone', 'Telephone (optional)', 'tel', false, '', 'tel'),
+      this.field('ec-website', 'website', 'Hotel website (optional)', 'url', false, '', 'url')
+    ];
+    return {
+      isHome: route === 'home', isServices: route === 'services', isContact: route === 'contact',
+      curHome: cur('home'), curServices: cur('services'), curContact: cur('contact'),
+      goHome: this.nav('home'), goServices: this.nav('services'), goContact: this.nav('contact'),
+      goCollection: this.nav('services', 'collection'),
+      headerRef: this.headerRef,
+      heroPad: 'calc(' + st.headerH + 'px + clamp(34px, 7vh, 96px))',
+      slide0: st.slide === 0 ? 1 : 0,
+      slide1: st.slide === 1 ? 1 : 0,
+      slide2: st.slide === 2 ? 1 : 0,
+      atTop: !st.scrolled,
+      compact: st.scrolled,
+      headerBg: st.scrolled ? 'rgba(251,249,245,0.94)' : 'transparent',
+      headerBlur: st.scrolled ? 'blur(14px)' : 'none',
+      headerBorder: st.scrolled ? '#E4DED4' : 'rgba(228,222,212,0)',
+      ulHome: route === 'home' ? '#FFFDF9' : 'transparent',
+      ulServices: route === 'services' ? '#FFFDF9' : 'transparent',
+      ulContact: route === 'contact' ? '#FFFDF9' : 'transparent',
+      dkHome: route === 'home' ? '#201E1B' : 'transparent',
+      dkServices: route === 'services' ? '#201E1B' : 'transparent',
+      dkContact: route === 'contact' ? '#201E1B' : 'transparent',
+      cols3: st.wide ? 'repeat(3, 1fr)' : 'repeat(auto-fit, minmax(240px, 1fr))',
+      navDisplay: st.wide ? 'flex' : 'none',
+      burgerDisplay: st.wide ? 'none' : 'flex',
+      menuOpen: st.menuOpen && !st.wide,
+      menuExpanded: st.menuOpen ? 'true' : 'false',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+
+      principles: [
+        { num: 'I', title: 'Personal representation', body: 'One senior point of contact who knows the property, speaks for it accurately and is present in the market.' },
+        { num: 'II', title: 'Strategic market development', body: 'Activity built around where the hotel already performs and where genuine growth sits within the UK and Ireland.' },
+        { num: 'III', title: 'Measurable commercial focus', body: 'Sales, training and partnership work reviewed against the objectives agreed at the outset.' }
+      ],
+      servicePreview: [
+        { num: '01', title: 'Sales Representation', body: 'Proactive sales activity tailored to the hotel\u2019s market position and commercial objectives.' },
+        { num: '02', title: 'Strategic Business Development', body: 'The right partners, opportunities and routes to sustainable growth across the UK and Ireland.' },
+        { num: '03', title: 'Trade Engagement & Training', body: 'Product knowledge and confidence for the operators and advisors who sell the property.' },
+        { num: '04', title: 'Targeted Marketing Support', body: 'Marketing activity and partnerships that connect the hotel with the right audiences.' }
+      ],
+      featured: [
+        { location: 'Maldives', hotels: 'JA Manafaru', alt: 'Overwater villas above a turquoise lagoon at JA Manafaru, Maldives', bg: bgFill('./assets/manafaru-water-villas.jpg', { height: 'auto', aspectRatio: '4 / 5' }) },
+        { location: 'Dubai', hotels: 'JA Palm Tree Court · JA Beach Hotel · JA Ocean View Hotel · JA Hatta Fort Hotel', alt: 'Infinity pool with cabanas looking towards Ain Dubai at JA Ocean View Hotel', bg: bgFill('./assets/ocean-view-hotel.jpg', { height: 'auto', aspectRatio: '3 / 4' }) },
+        { location: 'Scotland', hotels: 'JA Mar Hall · JA The Bruntsfield', alt: 'JA The Bruntsfield, a Victorian sandstone hotel in Edinburgh, seen from above', bg: bgFill('./assets/bruntsfield.jpg', { height: 'auto', aspectRatio: '4 / 5' }) }
+      ],
+      capabilities: [
+        { num: '01', title: 'Sales Representation', body: 'Proactive sales activity tailored to the hotel\u2019s market position, audience and commercial objectives.' },
+        { num: '02', title: 'Strategic Business Development', body: 'Identifying the right partners, opportunities and routes to sustainable growth across the UK and Ireland.' },
+        { num: '03', title: 'Product Training', body: 'Giving tour operators, travel advisors and sales teams the knowledge and confidence to sell each property well.' },
+        { num: '04', title: 'FAM Trips & Sales Missions', body: 'Creating first-hand product understanding and meaningful engagement with priority trade partners.' },
+        { num: '05', title: 'Trade Events & Networking', body: 'Building visibility and relationships through relevant events, meetings and industry networks.' },
+        { num: '06', title: 'Marketing & Commercial Partnerships', body: 'Supporting targeted marketing activity and partnerships that connect the hotel with the right audiences.' }
+      ],
+      process: [
+        { num: '01', body: 'Understand the property and commercial priorities.' },
+        { num: '02', body: 'Define the UK and Ireland market strategy.' },
+        { num: '03', body: 'Activate sales, training, events and partnerships.' },
+        { num: '04', body: 'Review activity, relationships and measurable progress.' }
+      ],
+      collection: [
+        { label: 'Luxury', hotels: [
+          img('JA Manafaru', 'Maldives', 'manafaru-water-villas.jpeg', 'Overwater villas above a turquoise lagoon at JA Manafaru, Maldives', ['A Forbes-recommended island resort set amid the natural beauty of the Maldives, offering secluded beach and overwater villas with private pools, exceptional dining experiences, and immersive adventures across crystal-clear waters. A tranquil island escape where barefoot luxury, discovery, and unforgettable moments come together.']),
+          img('JA Palm Tree Court', 'Dubai', 'palm-tree-court.jpeg', 'Palm-lined pool terrace at JA Palm Tree Court, Dubai', ['An exclusive all-suite beachfront retreat, set amid palm-lined gardens, a private beach, and peaceful coastal pathways. A serene and indulgent escape, thoughtfully designed for those seeking privacy, space, and effortless luxury.'])
+        ] },
+        { label: 'Portfolio', hotels: [
+          slot('JA Lake View Hotel', 'Dubai', 'ec-lake-view', 'Drop a JA Lake View Hotel, Dubai photograph here', ['A vibrant lifestyle destination designed for travellers who embrace activity, discovery, and contemporary resort living. Overlooking the championship golf course, the hotel combines elevated dining experiences, including the award-winning Kenara by Vikas Khanna, with rooftop venues, modern amenities, and an energetic atmosphere.', 'At the heart of the experience is a state-of-the-art Sports and Shooting Club, bringing together golf, shooting, cricket, football, tennis, paddle, equestrian facilities, and a marina. Creating a dynamic hub for sport, leisure, and outdoor pursuits, JA Lake View Hotel offers a unique blend of relaxation, recreation, and unforgettable experiences.']),
+          img('JA Beach Hotel', 'Dubai', 'beach-hotel.jpeg', 'Pool, lawns and marina seen from above at JA Beach Hotel, Dubai', ['A heritage beachfront property overlooking Palm Jebel Ali, offering relaxed family-friendly living with private balconies, lush gardens, a splash park, and a private marina. Set along the Arabian Gulf, it is a place where generations come together to create cherished memories by the sea.']),
+          img('JA Ocean View Hotel', 'Dubai', 'ocean-view-hotel.jpg', 'Infinity pool with cabanas looking towards Ain Dubai at JA Ocean View Hotel', ['Perfectly positioned along The Walk at Jumeirah Beach Residence (JBR), offering direct beach access, vibrant dining experiences, and sweeping panoramic views of the Arabian Gulf. With Dubai\u2019s lively waterfront, world-class shopping, and buzzing nightlife just moments away, the city\u2019s vibrant energy is right on your doorstep.']),
+          img('JA Hatta Fort Hotel', 'Dubai', 'hatta-fort.jpeg', 'JA Hatta Fort Hotel set in lawns below the Hajar mountains', ['Nestled among the dramatic Hajar Mountains, surrounded by fresh mountain air, scenic nature trails, and endless opportunities for outdoor adventure. A peaceful highland retreat where relaxation and exploration come together, offering a refreshing escape immersed in nature.'])
+        ] },
+        { label: 'UK', hotels: [
+          img('JA Mar Hall', 'Scotland', 'mar-hall.jpeg', 'JA Mar Hall mansion house with its golf course and the River Clyde beyond', ['A distinguished country estate set on the banks of the River Clyde, offering refined dining, restorative spa experiences, and championship golf in an elegant historic setting. A timeless countryside retreat near Glasgow, where heritage, tranquillity, and exceptional hospitality come together for unforgettable escapes.']),
+          img('JA The Bruntsfield', 'Scotland', 'bruntsfield.jpeg', 'JA The Bruntsfield, a Victorian sandstone hotel in Edinburgh', ['A charming Victorian townhouse overlooking the historic Bruntsfield Links, offering easy access to Edinburgh\u2019s most iconic landmarks. Blending heritage, character, and modern comfort, it provides an elegant and welcoming base for discovering the city\u2019s culture, charm, and timeless appeal.'])
+        ] }
+      ],
+
+      fields: fields,
+      interest: st.form.interest,
+      onInterest: (e) => { const v = e.target.value; this.setState(s => ({ form: Object.assign({}, s.form, { interest: v }) })); },
+      message: st.form.message,
+      onMessage: (e) => { const v = e.target.value; this.setState(s => { const errors = Object.assign({}, s.errors); delete errors.message; return { form: Object.assign({}, s.form, { message: v }), errors: errors }; }); },
+      messageInvalid: !!st.errors.message,
+      messageDescribedBy: st.errors.message ? 'ec-message-error' : undefined,
+      messageBorder: st.errors.message ? '#8C4A3C' : '#C4BDB0',
+      consent: st.form.consent,
+      onConsent: (e) => { const v = e.target.checked; this.setState(s => { const errors = Object.assign({}, s.errors); delete errors.consent; return { form: Object.assign({}, s.form, { consent: v }), errors: errors }; }); },
+      consentInvalid: !!st.errors.consent,
+      consentDescribedBy: st.errors.consent ? 'ec-consent-error' : undefined,
+      onSubmit: this.submit,
+      sending: st.sending,
+      submitLabel: st.sending ? 'Sending…' : 'Send Enquiry',
+      submitCursor: st.sending ? 'progress' : 'pointer',
+      submitOpacity: st.sending ? 0.6 : 1,
+      hasError: !!st.formError,
+      formError: st.formError,
+      submitted: st.submitted,
+      showForm: !st.submitted,
+      resetForm: () => this.setState({ submitted: false, sending: false, errors: {}, formError: '', form: { name: '', company: '', email: '', phone: '', website: '', message: '', interest: 'Sales Representation', consent: false } })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
