@@ -111,7 +111,7 @@
 
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <div>
-  <section aria-label="Elysian Collection" style="position:relative;min-height:min(90vh,880px);display:flex;align-items:flex-end;overflow:hidden;background:#DFE7E9">
+  <section aria-label="Elysian Collection" style="position:relative;min-height:{{ heroMinH }};display:flex;align-items:flex-end;overflow:hidden;background:#DFE7E9">
     <img src="./assets/palm-tree-court.jpg" alt="Palm-lined pool terrace looking out to the beach at JA Palm Tree Court, Dubai" width="4724" height="3147" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide0 }};transition:opacity 1800ms ease" />
     <img src="./assets/manafaru-water-villas.jpg" alt="" aria-hidden="true" width="766" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide1 }};transition:opacity 1800ms ease" />
     <img src="./assets/mar-hall.jpg" alt="" aria-hidden="true" width="1400" height="928" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide2 }};transition:opacity 1800ms ease" />
@@ -242,10 +242,10 @@
 
 <sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
 <div>
-  <section aria-labelledby="ec-svc-hero" style="position:relative;min-height:min(74vh,700px);display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
+  <section aria-labelledby="ec-svc-hero" style="position:relative;min-height:{{ heroMinH }};display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
     <img src="./assets/mar-hall.jpg" alt="JA Mar Hall seen from above, with its golf course and the River Clyde beyond" width="1400" height="928" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
     <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.8) 0%,rgba(20,18,14,0.66) 40%,rgba(20,18,14,0.3) 72%,rgba(20,18,14,0.06) 100%)"></div>
-    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(52px,8vh,96px)">
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(56px,9vh,104px)">
       <div style="max-width:min(680px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
         <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.88)">UK &amp; Ireland representation</p>
         <h1 id="ec-svc-hero" style="margin-top:20px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(36px,5.4vw,70px);line-height:1.06;letter-spacing:-0.015em">Strategic representation. Personal delivery.</h1>
@@ -353,10 +353,10 @@
 
 <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
 <div>
-  <section aria-labelledby="ec-contact-hero" style="position:relative;min-height:min(68vh,640px);display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
+  <section aria-labelledby="ec-contact-hero" style="position:relative;min-height:{{ heroMinH }};display:flex;align-items:flex-end;overflow:hidden;background:#DDE3E0">
     <img src="./assets/ocean-view-hotel.jpg" alt="Infinity pool with cabanas looking towards Ain Dubai at JA Ocean View Hotel" width="8256" height="5504" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
     <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.8) 0%,rgba(20,18,14,0.64) 42%,rgba(20,18,14,0.28) 74%,rgba(20,18,14,0.06) 100%)"></div>
-    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(52px,8vh,96px)">
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(56px,9vh,104px)">
       <div style="max-width:min(700px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
         <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.88)">Contact Elysian Collection</p>
         <h1 id="ec-contact-hero" style="margin-top:20px;max-width:24ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(36px,5.4vw,70px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance">Let's discuss where your hotel could go next</h1>
@@ -669,7 +669,8 @@ class Component extends DCLogic {
       goHome: this.nav('home'), goServices: this.nav('services'), goContact: this.nav('contact'),
       goCollection: this.nav('services', 'collection'),
       headerRef: this.headerRef,
-      heroPad: 'calc(' + st.headerH + 'px + clamp(34px, 7vh, 96px))',
+      heroPad: 'calc(' + st.headerH + 'px + ' + (st.wide ? 'clamp(34px, 7vh, 96px)' : '18px') + ')',
+      heroMinH: st.wide ? '880px' : 'auto',
       slide0: st.slide === 0 ? 1 : 0,
       slide1: st.slide === 1 ? 1 : 0,
       slide2: st.slide === 2 ? 1 : 0,
