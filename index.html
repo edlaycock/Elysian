@@ -115,7 +115,7 @@
 <div>
   <section aria-label="Elysian Collection" style="position:relative;min-height:{{ heroMinH }};display:flex;align-items:flex-end;overflow:hidden;background:#DFE7E9">
     <img src="./assets/palm-tree-court.jpg" alt="Palm-lined pool terrace looking out to the beach at JA Palm Tree Court, Dubai" width="4724" height="3147" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide0 }};transition:opacity 1800ms ease" />
-    <img src="./assets/manafaru-water-villas.jpg" alt="" aria-hidden="true" width="766" height="600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide1 }};transition:opacity 1800ms ease" />
+    <img src="./assets/manafaru-water-villas.jpg" alt="" aria-hidden="true" width="1920" height="1276" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide1 }};transition:opacity 1800ms ease" />
     <img src="./assets/mar-hall.jpg" alt="" aria-hidden="true" width="1400" height="928" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ slide2 }};transition:opacity 1800ms ease" />
     <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,18,14,0.82) 0%,rgba(20,18,14,0.7) 38%,rgba(20,18,14,0.34) 68%,rgba(20,18,14,0.08) 100%)"></div>
     <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(56px,9vh,104px)">
@@ -152,7 +152,7 @@
   <section aria-labelledby="ec-founder" style="background:#F3EFE8;padding:clamp(68px,11vh,140px) clamp(20px,5vw,64px)">
     <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(36px,6vw,86px);align-items:center">
       <figure>
-        <div style="width:81%;aspect-ratio:4/5;background:#E6E0D6;overflow:hidden">
+        <div style="width:81%;aspect-ratio:4/5;background:#E6E0D6;overflow:hidden;margin:{{ portraitMargin }}">
           <img id="ec-founder-portrait" src="./assets/gill-shannon.jpg" alt="Gill Shannon, founder of Elysian Collection" style="width:100%;height:100%;object-fit:cover" />
         </div>
       </figure>
@@ -693,6 +693,7 @@ class Component extends DCLogic {
       revealRef: this.revealRef,
       revealOpacity: st.revealOk ? 1 : 0,
       fallbackOpacity: st.revealOk ? 0 : 1,
+      portraitMargin: st.wide ? '0' : '0 auto',
       heroPad: 'calc(' + st.headerH + 'px + ' + (st.wide ? 'clamp(34px, 7vh, 96px)' : '18px') + ')',
       heroMinH: st.wide ? '880px' : 'auto',
       slide0: st.slide === 0 ? 1 : 0,
