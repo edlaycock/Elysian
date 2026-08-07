@@ -22,6 +22,9 @@ image-slot.js                  drag-and-drop image placeholder component
 assets/
   logo-stacked.png             full stacked logo (home hero)
   logo-white.png               light logo (footer)
+  favicon.svg                  EC monogram favicon (primary)
+  favicon-32.png               32px PNG fallback
+  apple-touch-icon.png         180px rounded icon for iOS home screen
   gill-shannon.jpg             founder portrait
   manafaru-water-villas.jpg    JA Manafaru, Maldives
   palm-tree-court.jpg          JA Palm Tree Court, Dubai
