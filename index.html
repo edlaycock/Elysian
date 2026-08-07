@@ -394,8 +394,8 @@
             </dd>
           </div>
           <div>
-            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">Website</dt>
-            <dd style="margin:8px 0 0"><a href="https://elysiancollection.co.uk" style="font-size:16px;font-weight:300;border-bottom:1px solid #C4BDB0;padding-bottom:2px">elysiancollection.co.uk</a></dd>
+            <dt style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8B857C">LinkedIn</dt>
+            <dd style="margin:8px 0 0"><a href="https://www.linkedin.com/in/gill-shannon-20638253/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:300;border-bottom:1px solid #C4BDB0;padding-bottom:2px"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="display:block;fill:currentColor;flex:0 0 auto"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.5 6 2.5 2.5 0 0 1 4.98 3.5zM3 8.98h4v12H3zM9.5 8.98h3.83v1.64h.05a4.2 4.2 0 0 1 3.78-2.08c4.04 0 4.79 2.66 4.79 6.11v6.33h-4v-5.61c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96v5.71h-4z"></path></svg><span>Gill Shannon</span></a></dd>
           </div>
         </dl>
         <p style="margin-top:36px;border-top:1px solid #E4DED4;padding-top:22px;max-width:46ch;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,1.9vw,23px);font-weight:300;line-height:1.55;color:#2B2823;text-wrap:pretty">Elysian Collection works with a carefully curated number of hotel partners, so that every property receives personal, focused attention.</p>
@@ -450,7 +450,7 @@
             <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
               <label for="ec-consent" style="display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:6px 0;min-height:44px">
                 <input id="ec-consent" name="consent" type="checkbox" checked="{{ consent }}" onChange="{{ onConsent }}" aria-invalid="{{ consentInvalid }}" aria-describedby="{{ consentDescribedBy }}" style="width:20px;height:20px;margin-top:2px;flex:0 0 auto;accent-color:#201E1B" />
-                <span style="font-size:14px;font-weight:300;line-height:1.7;color:#55514B">I agree that Elysian Collection may use these details to respond to my enquiry. [Placeholder privacy wording — link to Privacy Policy.]</span>
+                <span style="font-size:14px;font-weight:300;line-height:1.7;color:#55514B">I agree that Elysian Collection may use these details to respond to my enquiry, as described in the <a href="#privacy" onClick="{{ goPrivacy }}" style="border-bottom:1px solid #C4BDB0">Privacy Policy</a>.</span>
               </label>
               <sc-if value="{{ consentInvalid }}" hint-placeholder-val="{{ false }}">
                 <p id="ec-consent-error" style="font-size:12px;font-weight:400;color:#7A3E31">Please confirm your consent to continue.</p>
@@ -463,6 +463,68 @@
             </div>
           </form>
         </sc-if>
+      </div>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLegal }}" hint-placeholder-val="{{ false }}">
+<div>
+  <section aria-labelledby="ec-legal-hero" style="position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#201E1B">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(120% 100% at 12% 0%,rgba(255,253,249,0.09) 0%,rgba(255,253,249,0) 62%)"></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ heroPad }} clamp(20px,5vw,64px) clamp(48px,7vh,84px)">
+      <div style="max-width:min(760px,94%);color:#FFFDF9;animation:ecFade 900ms ease both">
+        <p style="font-size:clamp(10px,1.05vw,12px);font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,253,249,0.78)">Legal</p>
+        <h1 id="ec-legal-hero" style="margin-top:20px;max-width:22ch;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(36px,5.4vw,70px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance">{{ legalTitle }}</h1>
+        <p style="margin-top:22px;max-width:60ch;font-size:clamp(15px,1.25vw,17px);font-weight:300;line-height:1.85;color:rgba(255,253,249,0.9);text-wrap:pretty">{{ legalIntro }}</p>
+        <p style="margin-top:26px;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,253,249,0.62)">Last updated {{ legalUpdated }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#FBF9F5;padding:clamp(48px,7vh,88px) clamp(20px,5vw,64px) clamp(68px,11vh,140px)">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:{{ legalCols }};gap:clamp(36px,6vw,88px);align-items:start">
+      <nav aria-label="On this page" style="position:{{ tocPos }};top:calc({{ headerH }}px + 24px)">
+        <h2 style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8B857C;border-bottom:1px solid #E4DED4;padding-bottom:14px">On this page</h2>
+        <ul style="margin-top:18px;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ legalSections }}" as="s" hint-placeholder-count="6">
+            <li><a href="#{{ s.id }}" style="display:flex;gap:10px;font-size:13px;font-weight:300;line-height:1.5;color:#55514B" style-hover="color:#201E1B"><span style="color:#A8A29B;font-variant-numeric:tabular-nums">{{ s.num }}</span><span>{{ s.heading }}</span></a></li>
+          </sc-for>
+        </ul>
+      </nav>
+
+      <div style="display:flex;flex-direction:column;gap:clamp(34px,4vw,50px);max-width:76ch">
+        <sc-for list="{{ legalSections }}" as="s" hint-placeholder-count="6">
+          <article id="{{ s.id }}" style="scroll-margin-top:180px">
+            <p style="font-size:10px;font-weight:500;letter-spacing:0.2em;color:#A8A29B;font-variant-numeric:tabular-nums">{{ s.num }}</p>
+            <h2 style="margin-top:10px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(25px,2.9vw,38px);line-height:1.16;text-wrap:pretty">{{ s.heading }}</h2>
+            <div style="margin-top:16px;display:flex;flex-direction:column;gap:15px">
+              <sc-for list="{{ s.paras }}" as="p" hint-placeholder-count="2">
+                <p style="font-size:16px;font-weight:300;line-height:1.85;color:#55514B;text-wrap:pretty">{{ p }}</p>
+              </sc-for>
+            </div>
+            <sc-if value="{{ s.hasList }}" hint-placeholder-val="{{ false }}">
+              <ul style="margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;border-top:1px solid #EAE4DA;padding-top:18px">
+                <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline">
+                    <span aria-hidden="true" style="width:5px;height:5px;border-radius:50%;background:#C4BDB0;transform:translateY(-3px)"></span>
+                    <span style="font-size:15px;font-weight:300;line-height:1.8;color:#55514B;text-wrap:pretty"><strong style="font-weight:500;color:#2B2823">{{ it.label }}</strong>{{ it.text }}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </sc-if>
+            <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ false }}">
+              <p style="margin-top:20px;border-left:1px solid #C4BDB0;padding-left:clamp(18px,2.2vw,26px);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,2vw,24px);font-weight:300;line-height:1.55;color:#2B2823;text-wrap:pretty">{{ s.note }}</p>
+            </sc-if>
+          </article>
+        </sc-for>
+
+        <div style="border-top:1px solid #E4DED4;padding-top:26px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center">
+          <a href="#privacy" onClick="{{ goPrivacy }}" style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid #C4BDB0">Privacy Policy</a>
+          <a href="#cookies" onClick="{{ goCookies }}" style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid #C4BDB0">Cookie Policy</a>
+          <a href="#contact" onClick="{{ goContact }}" style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid #C4BDB0">Contact us</a>
+        </div>
       </div>
     </div>
   </section>
@@ -496,13 +558,14 @@
         <ul style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
           <li><a href="mailto:gill@elysiancollection.co.uk" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">gill@elysiancollection.co.uk</a></li>
           <li><a href="tel:+447920017175" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">07920 017175</a></li>
+          <li><a href="https://www.linkedin.com/in/gill-shannon-20638253/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:9px;color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="display:block;fill:currentColor;flex:0 0 auto"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.5 6 2.5 2.5 0 0 1 4.98 3.5zM3 8.98h4v12H3zM9.5 8.98h3.83v1.64h.05a4.2 4.2 0 0 1 3.78-2.08c4.04 0 4.79 2.66 4.79 6.11v6.33h-4v-5.61c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96v5.71h-4z"></path></svg><span>Gill Shannon on LinkedIn</span></a></li>
         </ul>
       </div>
       <div>
         <h2 style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#8D877E">Legal</h2>
         <ul style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
-          <li><a href="#privacy" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Privacy Policy</a></li>
-          <li><a href="#cookies" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Cookie Policy</a></li>
+          <li><a href="#privacy" onClick="{{ goPrivacy }}" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Privacy Policy</a></li>
+          <li><a href="#cookies" onClick="{{ goCookies }}" style="color:#DCD6CC;font-size:14px;font-weight:300" style-hover="color:#FBF9F5">Cookie Policy</a></li>
         </ul>
       </div>
     </div>
@@ -520,11 +583,95 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
-const ROUTES = ['home', 'services', 'contact'];
+const ROUTES = ['home', 'services', 'contact', 'privacy', 'cookies'];
+const LEGAL_UPDATED = '7 August 2026';
+const sec = (num, id, heading, paras, items, note) => ({ num, id, heading, paras, items: items || [], hasList: !!(items && items.length), note: note || '', hasNote: !!note });
+
+const PRIVACY = [
+  sec('01', 'ec-p-who', 'Who we are', [
+    'Elysian Collection provides sales and marketing representation for luxury hotels and resorts in the UK and Ireland market. For the purposes of the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018, Elysian Collection is the data controller for the personal data described in this policy.',
+    'Our registered contact address is Enterprise House, The Courtyard, Old Court House Road, Bromborough, Wirral CH62 4AB. You can reach us by email at gill@elysiancollection.co.uk or by telephone on 07920 017175.'
+  ]),
+  sec('02', 'ec-p-collect', 'The information we collect', [
+    'We only collect information that we need in order to respond to enquiries and manage our commercial relationships. This includes:'
+  ], [
+    { label: 'Contact details — ', text: 'your name, hotel or company name, work email address, telephone number and website, submitted through our enquiry form or given to us directly.' },
+    { label: 'Enquiry content — ', text: 'the message you send us, the service you are interested in and any details you choose to share about your property or commercial objectives.' },
+    { label: 'Correspondence — ', text: 'emails, calls, meeting notes and other records of our dealings with you as a client or prospective client.' },
+    { label: 'Technical data — ', text: 'limited information collected automatically when you visit this website, such as your IP address, browser type and the pages you view. See our Cookie Policy for detail.' }
+  ]),
+  sec('03', 'ec-p-use', 'How and why we use it', [
+    'We use your personal data to reply to your enquiry, to provide and administer our representation services, to keep records of our business relationships, and to comply with our legal and accounting obligations.',
+    'We do not sell your personal data, and we do not use it to build marketing profiles or to make automated decisions about you.'
+  ]),
+  sec('04', 'ec-p-basis', 'Our lawful bases', [
+    'Under the UK GDPR we must have a lawful basis for processing your personal data. We rely on the following:'
+  ], [
+    { label: 'Legitimate interests — ', text: 'responding to business enquiries, maintaining relationships with hotel partners and trade contacts, and running our business. We consider these uses to have a minimal privacy impact.' },
+    { label: 'Performance of a contract — ', text: 'where we are delivering agreed representation services to you or your property.' },
+    { label: 'Consent — ', text: 'where you have ticked the consent box on our enquiry form, or agreed to receive non-essential cookies. You may withdraw consent at any time.' },
+    { label: 'Legal obligation — ', text: 'where we must retain records for tax, accounting or regulatory purposes.' }
+  ]),
+  sec('05', 'ec-p-share', 'Who we share it with', [
+    'We share personal data only where it is necessary. This may include the hotel or resort your enquiry relates to, our professional advisers, and trusted service providers who support our operations — for example email, website hosting, file storage and accounting providers. Those providers act on our instructions and are bound by confidentiality and data protection terms.',
+    'We may also disclose information where we are required to do so by law, or to establish or defend legal claims.'
+  ]),
+  sec('06', 'ec-p-transfers', 'International transfers', [
+    'Some of our service providers, and some of the hotel groups we represent, are based outside the UK. Where personal data is transferred outside the UK we rely on adequacy regulations or on appropriate safeguards such as the International Data Transfer Agreement or the UK Addendum to the EU Standard Contractual Clauses.'
+  ]),
+  sec('07', 'ec-p-retention', 'How long we keep it', [
+    'We keep enquiry correspondence for up to two years from our last contact with you, unless a commercial relationship develops. Records relating to a contracted engagement are kept for the duration of the engagement and for seven years afterwards, in line with our accounting and legal obligations. After that, data is securely deleted.'
+  ]),
+  sec('08', 'ec-p-security', 'Keeping it secure', [
+    'We use appropriate technical and organisational measures to protect personal data, including access controls, encrypted connections to this website, reputable business software and password protection. No transmission over the internet can be guaranteed as completely secure, so please do not send sensitive information to us by email.'
+  ]),
+  sec('09', 'ec-p-rights', 'Your rights', [
+    'You have the right to be informed about how we use your data, and to:'
+  ], [
+    { label: 'Access — ', text: 'request a copy of the personal data we hold about you.' },
+    { label: 'Rectification — ', text: 'ask us to correct data that is inaccurate or incomplete.' },
+    { label: 'Erasure — ', text: 'ask us to delete your data where there is no continuing reason for us to hold it.' },
+    { label: 'Restriction and objection — ', text: 'ask us to limit our use of your data, or object to processing based on legitimate interests.' },
+    { label: 'Portability — ', text: 'receive certain data in a portable format.' },
+    { label: 'Withdraw consent — ', text: 'withdraw consent at any time where consent is our lawful basis.' }
+  ], 'To exercise any of these rights, email gill@elysiancollection.co.uk. We will respond within one month.'),
+  sec('10', 'ec-p-complaints', 'Complaints', [
+    'If you are unhappy with how we have handled your personal data, please contact us first so we can put it right. You also have the right to complain to the Information Commissioner\u2019s Office (ICO), Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF — telephone 0303 123 1113, ico.org.uk.'
+  ]),
+  sec('11', 'ec-p-changes', 'Changes to this policy', [
+    'We review this policy periodically and will update this page when it changes. The date at the top of the page shows when it was last revised.'
+  ])
+];
+
+const COOKIES = [
+  sec('01', 'ec-c-what', 'What cookies are', [
+    'Cookies are small text files placed on your device when you visit a website. They allow a site to function correctly, remember your preferences and, in some cases, measure how the site is used. Similar technologies such as local storage and pixels work in comparable ways, and this policy covers those too.',
+    'We use cookies in line with the Privacy and Electronic Communications Regulations (PECR) and the UK GDPR.'
+  ]),
+  sec('02', 'ec-c-types', 'The cookies we use', [
+    'This is a small, information-only website, and we keep cookie use to a minimum. The categories below describe what may be set:'
+  ], [
+    { label: 'Strictly necessary — ', text: 'required for the site to work, including page navigation, form submission and basic security. These do not need your consent and cannot be switched off.' },
+    { label: 'Preference — ', text: 'remember choices such as your cookie selection, so you are not asked again on every visit.' },
+    { label: 'Analytics — ', text: 'help us understand how visitors find and use the site so we can improve it. These are only set if you agree, and the data is aggregated.' }
+  ], 'We do not use advertising or cross-site tracking cookies, and we do not sell data collected through cookies.'),
+  sec('03', 'ec-c-third', 'Third-party cookies', [
+    'Where we embed or link to third-party content — for example a hosting provider\u2019s security services, or LinkedIn — those providers may set their own cookies. We do not control them, and you should refer to each provider\u2019s own cookie notice for detail.'
+  ]),
+  sec('04', 'ec-c-consent', 'Your choices', [
+    'Non-essential cookies are only set with your consent, and you can change or withdraw that consent at any time. You can also control cookies through your browser: most browsers let you see what cookies are stored, delete them individually or entirely, and block them for particular sites or in general.',
+    'Blocking all cookies may affect how parts of this and other websites behave. Guidance for each major browser is available in its help pages, and further independent information can be found at ico.org.uk.'
+  ]),
+  sec('05', 'ec-c-more', 'More information', [
+    'For detail on how we handle personal data more generally, including your rights and how to contact us, please read our Privacy Policy. Any questions about this policy can be sent to gill@elysiancollection.co.uk.'
+  ])
+];
 const META = {
   home: ['Elysian Collection — Curating Exceptional Hotel Partnerships', 'Bespoke sales and marketing representation for a carefully curated collection of luxury hotels and resorts across the UK and Ireland.'],
   services: ['Services — Elysian Collection', 'Bespoke sales representation across the UK and Ireland: business development, product training, FAM trips, trade events and marketing partnerships.'],
-  contact: ['Contact — Elysian Collection', 'Introduce your property and your UK and Ireland market ambitions to Gill Shannon at Elysian Collection.']
+  contact: ['Contact — Elysian Collection', 'Introduce your property and your UK and Ireland market ambitions to Gill Shannon at Elysian Collection.'],
+  privacy: ['Privacy Policy — Elysian Collection', 'How Elysian Collection collects, uses and protects personal data under the UK GDPR and the Data Protection Act 2018.'],
+  cookies: ['Cookie Policy — Elysian Collection', 'How Elysian Collection uses cookies and similar technologies on elysiancollection.co.uk, and how to manage your choices.']
 };
 
 const bgFill = (src, extra) => Object.assign({ width: '100%', height: '100%', backgroundImage: 'url(' + src + ')', backgroundSize: 'cover', backgroundPosition: 'center', transition: 'transform 900ms ease' }, extra || {});
@@ -688,6 +835,17 @@ class Component extends DCLogic {
       isHome: route === 'home', isServices: route === 'services', isContact: route === 'contact',
       curHome: cur('home'), curServices: cur('services'), curContact: cur('contact'),
       goHome: this.nav('home'), goServices: this.nav('services'), goContact: this.nav('contact'),
+      goPrivacy: this.nav('privacy'), goCookies: this.nav('cookies'),
+      isLegal: route === 'privacy' || route === 'cookies',
+      legalTitle: route === 'cookies' ? 'Cookie Policy' : 'Privacy Policy',
+      legalIntro: route === 'cookies'
+        ? 'This policy explains what cookies are, how they are used on elysiancollection.co.uk, and how you can control them.'
+        : 'This policy explains what personal data Elysian Collection collects, why we hold it, how long we keep it and the rights you have over it.',
+      legalUpdated: LEGAL_UPDATED,
+      legalSections: route === 'cookies' ? COOKIES : PRIVACY,
+      legalCols: st.wide ? 'minmax(200px,250px) 1fr' : '1fr',
+      tocPos: st.wide ? 'sticky' : 'static',
+      headerH: st.headerH,
       goCollection: this.nav('services', 'collection'),
       headerRef: this.headerRef,
       revealRef: this.revealRef,
