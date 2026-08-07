@@ -414,6 +414,10 @@
 
         <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
           <form novalidate="true" onSubmit="{{ onSubmit }}" style="margin-top:28px;display:flex;flex-direction:column;gap:22px">
+            <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+              <label for="ec-gotcha">Leave this field empty</label>
+              <input id="ec-gotcha" name="_honey" type="text" tabindex="-1" autoComplete="off" value="{{ gotcha }}" onChange="{{ onGotcha }}" />
+            </div>
             <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
               <p role="alert" style="border:1px solid #8C4A3C;background:#F7EDEA;color:#7A3E31;padding:16px 18px;font-size:14px;font-weight:400;line-height:1.6">{{ formError }}</p>
             </sc-if>
@@ -585,6 +589,15 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
 const ROUTES = ['home', 'services', 'contact', 'privacy', 'cookies'];
 const LEGAL_UPDATED = '7 August 2026';
+
+// Enquiry form delivery — FormSubmit (formsubmit.co), no account required.
+// The first submission triggers a one-off confirmation email to the address
+// below; click the activation link in it and the form is live from then on.
+// To avoid publishing the address in the markup, swap it for the random alias
+// FormSubmit shows after activation: 'https://formsubmit.co/ajax/abc123...'
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/gill@elysiancollection.co.uk';
+
+const AUTORESPONSE = 'Thank you for contacting Elysian Collection.\n\nYour enquiry has been received and Gill Shannon will come back to you personally, usually within one working day.\n\nIf your enquiry is urgent, please call 07920 017175.\n\nKind regards,\nElysian Collection\nCurating Exceptional Hotel Partnerships\nelysiancollection.co.uk';
 const sec = (num, id, heading, paras, items, note) => ({ num, id, heading, paras, items: items || [], hasList: !!(items && items.length), note: note || '', hasNote: !!note });
 
 const PRIVACY = [
@@ -682,7 +695,7 @@ class Component extends DCLogic {
   state = {
     route: 'home', menuOpen: false, scrolled: false, wide: true, slide: 0, headerH: 190, revealOk: false,
     form: { name: '', company: '', email: '', phone: '', website: '', message: '', interest: 'Sales Representation', consent: false },
-    errors: {}, sending: false, submitted: false, formError: ''
+    errors: {}, sending: false, submitted: false, formError: '', gotcha: ''
   };
 
   headerRef = React.createRef();
@@ -815,9 +828,36 @@ class Component extends DCLogic {
       this.setState({ errors: errors, formError: 'Please check the highlighted ' + (count === 1 ? 'field' : 'fields') + ' and try again.' });
       return;
     }
+    if (this.state.gotcha) return;
     this.setState({ sending: true, errors: {}, formError: '' });
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.setState({ sending: false, submitted: true }), 1200);
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        Name: f.name.trim(),
+        'Hotel or company': f.company.trim(),
+        Email: f.email.trim(),
+        Telephone: f.phone.trim() || '—',
+        'Hotel website': f.website.trim() || '—',
+        'Area of interest': f.interest,
+        Message: f.message.trim(),
+        'Consent given': f.consent ? 'Yes' : 'No',
+        'Submitted from': window.location.href,
+        _subject: 'Website enquiry — ' + f.company.trim(),
+        _replyto: f.email.trim(),
+        _template: 'table',
+        _captcha: 'false',
+        _autoresponse: AUTORESPONSE,
+        _honey: ''
+      })
+    })
+      .then(res => res.json().catch(() => ({})).then(d => {
+        if (!res.ok || (d.success !== undefined && String(d.success) !== 'true')) throw new Error(d.message || 'Send failed');
+        return d;
+      }))
+      .then(() => this.setState({ sending: false, submitted: true }))
+      .catch(() => this.setState({ sending: false, formError: 'Sorry — your enquiry could not be sent. Please try again, or email gill@elysiancollection.co.uk directly.' }));
   };
 
   renderVals() {
@@ -907,18 +947,18 @@ class Component extends DCLogic {
       ],
       collection: [
         { label: 'Luxury', hotels: [
-          img('JA Manafaru', 'Maldives', 'manafaru-water-villas.jpeg', 'Overwater villas above a turquoise lagoon at JA Manafaru, Maldives', ['A Forbes-recommended island resort set amid the natural beauty of the Maldives, offering secluded beach and overwater villas with private pools, exceptional dining experiences, and immersive adventures across crystal-clear waters. A tranquil island escape where barefoot luxury, discovery, and unforgettable moments come together.']),
-          img('JA Palm Tree Court', 'Dubai', 'palm-tree-court.jpeg', 'Palm-lined pool terrace at JA Palm Tree Court, Dubai', ['An exclusive all-suite beachfront retreat, set amid palm-lined gardens, a private beach, and peaceful coastal pathways. A serene and indulgent escape, thoughtfully designed for those seeking privacy, space, and effortless luxury.'])
+          img('JA Manafaru', 'Maldives', 'manafaru-water-villas.jpg', 'Overwater villas above a turquoise lagoon at JA Manafaru, Maldives', ['A Forbes-recommended island resort set amid the natural beauty of the Maldives, offering secluded beach and overwater villas with private pools, exceptional dining experiences, and immersive adventures across crystal-clear waters. A tranquil island escape where barefoot luxury, discovery, and unforgettable moments come together.']),
+          img('JA Palm Tree Court', 'Dubai', 'palm-tree-court.jpg', 'Palm-lined pool terrace at JA Palm Tree Court, Dubai', ['An exclusive all-suite beachfront retreat, set amid palm-lined gardens, a private beach, and peaceful coastal pathways. A serene and indulgent escape, thoughtfully designed for those seeking privacy, space, and effortless luxury.'])
         ] },
         { label: 'Portfolio', hotels: [
-          slot('JA Lake View Hotel', 'Dubai', 'ec-lake-view', 'Drop a JA Lake View Hotel, Dubai photograph here', ['A vibrant lifestyle destination designed for travellers who embrace activity, discovery, and contemporary resort living. Overlooking the championship golf course, the hotel combines elevated dining experiences, including the award-winning Kenara by Vikas Khanna, with rooftop venues, modern amenities, and an energetic atmosphere.', 'At the heart of the experience is a state-of-the-art Sports and Shooting Club, bringing together golf, shooting, cricket, football, tennis, paddle, equestrian facilities, and a marina. Creating a dynamic hub for sport, leisure, and outdoor pursuits, JA Lake View Hotel offers a unique blend of relaxation, recreation, and unforgettable experiences.']),
-          img('JA Beach Hotel', 'Dubai', 'beach-hotel.jpeg', 'Pool, lawns and marina seen from above at JA Beach Hotel, Dubai', ['A heritage beachfront property overlooking Palm Jebel Ali, offering relaxed family-friendly living with private balconies, lush gardens, a splash park, and a private marina. Set along the Arabian Gulf, it is a place where generations come together to create cherished memories by the sea.']),
+          img('JA Lake View Hotel', 'Dubai', 'lake-view.jpg', 'JA Lake View Hotel, Dubai, overlooking the championship golf course', ['A vibrant lifestyle destination designed for travellers who embrace activity, discovery, and contemporary resort living. Overlooking the championship golf course, the hotel combines elevated dining experiences, including the award-winning Kenara by Vikas Khanna, with rooftop venues, modern amenities, and an energetic atmosphere.', 'At the heart of the experience is a state-of-the-art Sports and Shooting Club, bringing together golf, shooting, cricket, football, tennis, paddle, equestrian facilities, and a marina. Creating a dynamic hub for sport, leisure, and outdoor pursuits, JA Lake View Hotel offers a unique blend of relaxation, recreation, and unforgettable experiences.']),
+          img('JA Beach Hotel', 'Dubai', 'beach-hotel.jpg', 'Pool, lawns and marina seen from above at JA Beach Hotel, Dubai', ['A heritage beachfront property overlooking Palm Jebel Ali, offering relaxed family-friendly living with private balconies, lush gardens, a splash park, and a private marina. Set along the Arabian Gulf, it is a place where generations come together to create cherished memories by the sea.']),
           img('JA Ocean View Hotel', 'Dubai', 'ocean-view-hotel.jpg', 'Infinity pool with cabanas looking towards Ain Dubai at JA Ocean View Hotel', ['Perfectly positioned along The Walk at Jumeirah Beach Residence (JBR), offering direct beach access, vibrant dining experiences, and sweeping panoramic views of the Arabian Gulf. With Dubai\u2019s lively waterfront, world-class shopping, and buzzing nightlife just moments away, the city\u2019s vibrant energy is right on your doorstep.']),
-          img('JA Hatta Fort Hotel', 'Dubai', 'hatta-fort.jpeg', 'JA Hatta Fort Hotel set in lawns below the Hajar mountains', ['Nestled among the dramatic Hajar Mountains, surrounded by fresh mountain air, scenic nature trails, and endless opportunities for outdoor adventure. A peaceful highland retreat where relaxation and exploration come together, offering a refreshing escape immersed in nature.'])
+          img('JA Hatta Fort Hotel', 'Dubai', 'hatta-fort.jpg', 'JA Hatta Fort Hotel set in lawns below the Hajar mountains', ['Nestled among the dramatic Hajar Mountains, surrounded by fresh mountain air, scenic nature trails, and endless opportunities for outdoor adventure. A peaceful highland retreat where relaxation and exploration come together, offering a refreshing escape immersed in nature.'])
         ] },
         { label: 'UK', hotels: [
-          img('JA Mar Hall', 'Scotland', 'mar-hall.jpeg', 'JA Mar Hall mansion house with its golf course and the River Clyde beyond', ['A distinguished country estate set on the banks of the River Clyde, offering refined dining, restorative spa experiences, and championship golf in an elegant historic setting. A timeless countryside retreat near Glasgow, where heritage, tranquillity, and exceptional hospitality come together for unforgettable escapes.']),
-          img('JA The Bruntsfield', 'Scotland', 'bruntsfield.jpeg', 'JA The Bruntsfield, a Victorian sandstone hotel in Edinburgh', ['A charming Victorian townhouse overlooking the historic Bruntsfield Links, offering easy access to Edinburgh\u2019s most iconic landmarks. Blending heritage, character, and modern comfort, it provides an elegant and welcoming base for discovering the city\u2019s culture, charm, and timeless appeal.'])
+          img('JA Mar Hall', 'Scotland', 'mar-hall.jpg', 'JA Mar Hall mansion house with its golf course and the River Clyde beyond', ['A distinguished country estate set on the banks of the River Clyde, offering refined dining, restorative spa experiences, and championship golf in an elegant historic setting. A timeless countryside retreat near Glasgow, where heritage, tranquillity, and exceptional hospitality come together for unforgettable escapes.']),
+          img('JA The Bruntsfield', 'Scotland', 'bruntsfield.jpg', 'JA The Bruntsfield, a Victorian sandstone hotel in Edinburgh', ['A charming Victorian townhouse overlooking the historic Bruntsfield Links, offering easy access to Edinburgh\u2019s most iconic landmarks. Blending heritage, character, and modern comfort, it provides an elegant and welcoming base for discovering the city\u2019s culture, charm, and timeless appeal.'])
         ] }
       ],
 
@@ -935,6 +975,8 @@ class Component extends DCLogic {
       consentInvalid: !!st.errors.consent,
       consentDescribedBy: st.errors.consent ? 'ec-consent-error' : undefined,
       onSubmit: this.submit,
+      gotcha: st.gotcha,
+      onGotcha: (e) => { const v = e.target.value; this.setState({ gotcha: v }); },
       sending: st.sending,
       submitLabel: st.sending ? 'Sending…' : 'Send Enquiry',
       submitCursor: st.sending ? 'progress' : 'pointer',
@@ -943,7 +985,7 @@ class Component extends DCLogic {
       formError: st.formError,
       submitted: st.submitted,
       showForm: !st.submitted,
-      resetForm: () => this.setState({ submitted: false, sending: false, errors: {}, formError: '', form: { name: '', company: '', email: '', phone: '', website: '', message: '', interest: 'Sales Representation', consent: false } })
+      resetForm: () => this.setState({ submitted: false, sending: false, errors: {}, formError: '', gotcha: '', form: { name: '', company: '', email: '', phone: '', website: '', message: '', interest: 'Sales Representation', consent: false } })
     };
   }
 }
